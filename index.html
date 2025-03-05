@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BLUEKING SHIPMANAGEMENT delivers global maritime excellence through professional ship management solutions.">
+  <title>BLUEKING SHIPMANAGEMENT - Professional Maritime Solutions</title>
+  <link rel="icon" href="favicon.ico">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    /* Base Reset & Variables */
+    :root {
+      --primary-color: #4a90e2;
+      --primary-hover: #357abd;
+      --bg-overlay: rgba(0, 0, 50, 0.8);
+      --nav-bg: rgba(0, 0, 50, 0.9);
+      --font-family: 'Roboto', sans-serif;
+      --sidebar-width: 250px;
+    }
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      overflow-x: hidden;
+      font-family: var(--font-family);
+      line-height: 1.6;
+      color: #fff;
+      background: #000;
+    }
+    /* Header with Centered Logo */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      z-index: 1100;
+      padding: 1rem 0;
+      border-bottom: 1px solid #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    header img.logo {
+      max-height: 50px;
+      margin: 0 10px;
+    }
+    /* Sidebar Navigation */
+    #sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: var(--sidebar-width);
+      height: 100vh;
+      background: var(--nav-bg);
+      padding: 2rem 1rem;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease-in-out;
+      z-index: 1200;
+    }
+    #sidebar.active {
+      transform: translateX(0);
+    }
+    #sidebar nav ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 60px;
+    }
+    #sidebar nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    #sidebar nav a:hover {
+      color: var(--primary-color);
+    }
+    /* Sidebar Toggle Button */
+    #sidebar-toggle {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      z-index: 1300;
+      background: var(--nav-bg);
+      border: none;
+      color: #fff;
+      padding: 0.5rem 0.75rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    /* Main Sections */
+    main {
+      margin-top: 80px;
+    }
+    section {
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .section-content {
+      position: relative;
+      z-index: 2;
+      width: 90%;
+      max-width: 1200px;
+      padding: 2rem;
+      background: var(--bg-overlay);
+      border-radius: 10px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .section-active .section-content {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Background Media */
+    #video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+      opacity: 1;
+      transition: opacity 1.2s ease-in-out;
+    }
+    .bg-section .bg-image {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
+      pointer-events: none;
+      z-index: 1;
+    }
+    /* Typography */
+    h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary-color);
+    }
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+    /* Contact Form */
+    .contact-form {
+      display: grid;
+      gap: 1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .contact-form label {
+      font-weight: bold;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      padding: 0.8rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.9);
+      color: #333;
+    }
+    .contact-form button {
+      background: var(--primary-color);
+      color: #fff;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .contact-form button:hover {
+      background: var(--primary-hover);
+    }
+    /* Contact Info Block */
+    .contact-info {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1rem;
+      color: #fff;
+    }
+    .contact-info p {
+      margin-bottom: 0.5rem;
+    }
+    /* Video Control Button */
+    .video-control {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1100;
+      background: rgba(0,0,0,0.7);
+      border: none;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    /* Service Cards (unchanged) */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .card {
+      perspective: 1000px;
+    }
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+    .card:hover .card-inner {
+      transform: rotateY(180deg);
+    }
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      text-align: center;
+      padding: 1rem;
+    }
+    .card-front {
+      background: var(--bg-overlay);
+      color: #fff;
+    }
+    .card-front .card-image {
+      width: 100%;
+      height: 60%;
+      background-size: cover;
+      background-position: center;
+      border-bottom: 2px solid var(--primary-color);
+    }
+    .card-front .card-caption {
+      padding: 0.5rem;
+      font-size: 1.2rem;
+      background: var(--primary-color);
+      width: 100%;
+      color: #fff;
+    }
+    .card-back {
+      transform: rotateY(180deg);
+      background: #fff;
+      color: #333;
+      padding: 1.5rem;
+    }
+    /* Footer */
+    footer {
+      background: var(--nav-bg);
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0;
+      font-size: 0.9rem;
+    }
+    footer a {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      #sidebar nav ul {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .section-content {
+        margin: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar Navigation -->
+  <aside id="sidebar">
+    <nav>
+      <ul>
+        <li><a href="#home" onclick="hideSidebar()">Home</a></li>
+        <li><a href="#about" onclick="hideSidebar()">About</a></li>
+        <li><a href="#mission" onclick="hideSidebar()">Mission</a></li>
+        <li><a href="#services" onclick="hideSidebar()">Services</a></li>
+        <li><a href="#contact" onclick="hideSidebar()">Contact</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <!-- Sidebar Toggle Button -->
+  <button id="sidebar-toggle" aria-label="Toggle Navigation"><i class="fas fa-bars"></i></button>
+  
+  <!-- Header with Centered Logo -->
+  <header>
+    <img src="logo.png" alt="BLUEKING SHIPMANAGEMENT Logo" class="logo">
+    <img src="logo2.png" alt="BLUEKING SHIPMANAGEMENT Logo" class="logo">
+  </header>
+  
+  <main>
+    <!-- Home Section with Video Background -->
+    <section id="home">
+      <video autoplay muted loop id="video-bg" poster="ship-poster.jpg">
+        <source src="ship-video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="section-content">
+        <h1>BLUEKING SHIPMANAGEMENT</h1>
+        <p>Charting a course to a safer, smarter maritime future. With decades of industry insight and innovative solutions, we empower your fleet to thrive globally.</p>
+      </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="bg-section">
+      <div class="bg-image" style="background-image: url('about-bg.jpg');"></div>
+      <div class="section-content">
+        <h2>About Us</h2>
+        <p>BlueKing Shipmanagement stands at the forefront of maritime innovation. With over 20 years of experience, our dedicated team delivers tailored ship management solutions that ensure safety, efficiency, and success at sea.</p>
+      </div>
+    </section>
+    
+    <!-- Mission Section -->
+    <section id="mission" class="bg-section">
+      <div class="bg-image" style="background-image: url('mission-bg.jpg');"></div>
+      <div class="section-content">
+        <h2>Our Mission</h2>
+        <p>Our mission is to redefine maritime excellence by integrating advanced technology with proven expertise. We commit to ensuring every vessel operates safely, efficiently, and profitably while embracing sustainability and transparent practices.</p>
+      </div>
+    </section>
+    
+    <!-- Services Section (Service cards remain unchanged) -->
+    <section id="services" class="bg-section">
+      <div class="bg-image" style="background-image: url('services-bg.jpg');"></div>
+      <div class="section-content">
+        <h2>Our Services</h2>
+        <div class="card-grid">
+          <!-- Card 1: Technical Management -->
+          <div class="card">
+            <div class="card-inner">
+              <div class="card-face card-front">
+                <div class="card-image" style="background-image: url('technical.jpg');"></div>
+                <div class="card-caption">Technical Management</div>
+              </div>
+              <div class="card-face card-back">
+                <p>We implement cutting-edge technical solutions that optimize fleet performance and streamline operations.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Card 2: Crew Management -->
+          <div class="card">
+            <div class="card-inner">
+              <div class="card-face card-front">
+                <div class="card-image" style="background-image: url('crew.jpg');"></div>
+                <div class="card-caption">Crew Management</div>
+              </div>
+              <div class="card-face card-back">
+                <p>Our experienced team ensures efficient recruitment, training, and welfare of your crew, upholding the highest safety standards.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Card 3: Risk Management -->
+          <div class="card">
+            <div class="card-inner">
+              <div class="card-face card-front">
+                <div class="card-image" style="background-image: url('risk.jpg');"></div>
+                <div class="card-caption">Risk Management</div>
+              </div>
+              <div class="card-face card-back">
+                <p>We proactively identify and mitigate risks, ensuring secure maritime operations and peace of mind.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="bg-section">
+      <div class="bg-image" style="background-image: url('contact-bg.jpg');"></div>
+      <div class="section-content">
+        <h2>Contact Us</h2>
+        <div class="contact-info">
+          <p>Address: [To be defined]</p>
+          <p>Email: <a href="mailto:info@blueking-shipmanagement.com" style="color: var(--primary-color);">info@blueking-shipmanagement.com</a></p>
+        </div>
+        <form class="contact-form" action="#" method="post">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" placeholder="Your Name" required>
+          
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="Your Email" required>
+          
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+          
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+  
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 BLUEKING SHIPMANAGEMENT. All Rights Reserved. | Designed by BlueKing Team.</p>
+  </footer>
+ 
+  <script>
+    // Sidebar Toggle Functionality
+    const sidebar = document.getElementById('sidebar');
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+    function showSidebar() {
+      sidebar.classList.add('active');
+    }
+    function hideSidebar() {
+      sidebar.classList.remove('active');
+    }
+    sidebarToggle.addEventListener('click', () => {
+      sidebar.classList.contains('active') ? hideSidebar() : showSidebar();
+    });
+    sidebar.addEventListener('mouseleave', hideSidebar);
+    
+    // Animate Section Content When in View
+    const sections = document.querySelectorAll('section');
+    const sectionObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('section-active');
+        }
+      });
+    }, { threshold: 0.3 });
+    sections.forEach(section => sectionObserver.observe(section));
+    
+    // Background Image Transition Observer
+    let activeBg = null;
+    const bgObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const bgImage = entry.target.querySelector('.bg-image');
+        if (entry.isIntersecting) {
+          if (activeBg && activeBg !== bgImage) {
+            activeBg.style.opacity = 0;
+          }
+          bgImage.style.opacity = 1;
+          activeBg = bgImage;
+        } else {
+          bgImage.style.opacity = 0;
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.bg-section').forEach(section => bgObserver.observe(section));
+    
+    // Video Opacity Transition Based on View
+    const video = document.getElementById('video-bg');
+    const videoObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        video.style.opacity = entry.intersectionRatio;
+      });
+    }, { threshold: Array.from({ length: 100 }, (_, i) => i * 0.01) });
+    videoObserver.observe(document.getElementById('home'));
+    
+    // Prevent Initial Flash of Background Images
+    window.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.bg-image').forEach(bg => {
+        bg.style.transition = 'none';
+        bg.style.opacity = 0;
+        setTimeout(() => {
+          bg.style.transition = '';
+        }, 100);
+      });
+    });
+    
+    // Video Pause/Play Control
+    const videoControl = document.getElementById('video-control');
+    videoControl.addEventListener('click', () => {
+      if (video.paused) {
+        video.play();
+        videoControl.textContent = 'Pause Video';
+      } else {
+        video.pause();
+        videoControl.textContent = 'Play Video';
+      }
+    });
+    
+    // Respect Prefers-Reduced-Motion for Accessibility
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      video.removeAttribute('autoplay');
+      video.pause();
+      videoControl.style.display = 'none';
+    }
+  </script>
+</body>
+</html>
