@@ -111,6 +111,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
+      padding: 2rem;
     }
     .section-content {
       position: relative;
@@ -203,7 +204,6 @@
       text-align: center;
       margin-bottom: 2rem;
       font-size: 1rem;
-      color: #fff;
     }
     .contact-info p {
       margin-bottom: 0.5rem;
@@ -221,7 +221,7 @@
       border-radius: 4px;
       cursor: pointer;
     }
-    /* Service Cards (unchanged) */
+    /* Service Cards */
     .card-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -280,6 +280,14 @@
       color: #333;
       padding: 1.5rem;
     }
+    .card-back ul {
+      list-style: none;
+      padding: 0;
+    }
+    .card-back ul li {
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
     /* Footer */
     footer {
       background: var(--nav-bg);
@@ -304,6 +312,12 @@
       .section-content {
         margin: 1rem;
       }
+      h1 {
+        font-size: 2.8rem;
+      }
+      h2 {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
@@ -313,8 +327,7 @@
     <nav>
       <ul>
         <li><a href="#home" onclick="hideSidebar()">Home</a></li>
-        <li><a href="#about" onclick="hideSidebar()">About</a></li>
-        <li><a href="#mission" onclick="hideSidebar()">Mission</a></li>
+        <li><a href="#about" onclick="hideSidebar()">About Us</a></li>
         <li><a href="#services" onclick="hideSidebar()">Services</a></li>
         <li><a href="#contact" onclick="hideSidebar()">Contact</a></li>
       </ul>
@@ -323,7 +336,7 @@
   <!-- Sidebar Toggle Button -->
   <button id="sidebar-toggle" aria-label="Toggle Navigation"><i class="fas fa-bars"></i></button>
   
-  <!-- Header with Centered Logo -->
+  <!-- Header with Centered Logos -->
   <header>
     <img src="logo.png" alt="BLUEKING SHIPMANAGEMENT Logo" class="logo">
     <img src="logo2.png" alt="BLUEKING SHIPMANAGEMENT Logo" class="logo">
@@ -342,63 +355,69 @@
       </div>
     </section>
     
-    <!-- About Section -->
+    <!-- About Us Section with Updated Vision -->
     <section id="about" class="bg-section">
       <div class="bg-image" style="background-image: url('about-bg.jpg');"></div>
       <div class="section-content">
         <h2>About Us</h2>
-        <p>BlueKing Shipmanagement stands at the forefront of maritime innovation. With over 20 years of experience, our dedicated team delivers tailored ship management solutions that ensure safety, efficiency, and success at sea.</p>
+        <p>BlueKing Management is composed of a team of seasoned professionals, including former senior merchant fleet officers, marine technicians, quality auditors, commercial operators, industry specialists, ship owners, and ship managers, all dedicated to implementing the best management practices.</p>
+        <p>We excel in providing ship management services in a cost-effective manner while prioritizing a strong safety culture and environmental stewardship. Our independence allows us the flexibility to deliver customized solutions. Our goal is to be a reliable partner and grow in collaboration with our clients.</p>
+        <p>Our processes are designed to be straightforward and efficient, ensuring that we produce results rather than excuses. Grounded in our core values and best seamanship practices, we continually refine our strategies to adapt to the ever-changing maritime industry, driven by our Vision of Trusted Navigation and Trusted Shipping and our Purpose of Creating Value.</p>
       </div>
     </section>
     
-    <!-- Mission Section -->
-    <section id="mission" class="bg-section">
-      <div class="bg-image" style="background-image: url('mission-bg.jpg');"></div>
-      <div class="section-content">
-        <h2>Our Mission</h2>
-        <p>Our mission is to redefine maritime excellence by integrating advanced technology with proven expertise. We commit to ensuring every vessel operates safely, efficiently, and profitably while embracing sustainability and transparent practices.</p>
-      </div>
-    </section>
-    
-    <!-- Services Section (Service cards remain unchanged) -->
+    <!-- Services Section with Updated Service Cards -->
     <section id="services" class="bg-section">
       <div class="bg-image" style="background-image: url('services-bg.jpg');"></div>
       <div class="section-content">
         <h2>Our Services</h2>
         <div class="card-grid">
-          <!-- Card 1: Technical Management -->
+          <!-- Card 1: Ship Management -->
           <div class="card">
             <div class="card-inner">
               <div class="card-face card-front">
-                <div class="card-image" style="background-image: url('technical.jpg');"></div>
-                <div class="card-caption">Technical Management</div>
+                <div class="card-image" style="background-image: url('ship-management.jpg');"></div>
+                <div class="card-caption">Ship Management</div>
               </div>
               <div class="card-face card-back">
-                <p>We implement cutting-edge technical solutions that optimize fleet performance and streamline operations.</p>
+                <ul>
+                  <li>Fleet Technical Management</li>
+                  <li>Budget Control &amp; Accounting</li>
+                  <li>Commercial Operations</li>
+                  <li>Insurance &amp; Legal</li>
+                </ul>
               </div>
             </div>
           </div>
-          <!-- Card 2: Crew Management -->
+          <!-- Card 2: Crewing -->
           <div class="card">
             <div class="card-inner">
               <div class="card-face card-front">
-                <div class="card-image" style="background-image: url('crew.jpg');"></div>
-                <div class="card-caption">Crew Management</div>
+                <div class="card-image" style="background-image: url('crewing.jpg');"></div>
+                <div class="card-caption">Crewing</div>
               </div>
               <div class="card-face card-back">
-                <p>Our experienced team ensures efficient recruitment, training, and welfare of your crew, upholding the highest safety standards.</p>
+                <ul>
+                  <li>Crew Management &amp; Manning</li>
+                  <li>Seafarers Recruitment &amp; Training</li>
+                  <li>Administration &amp; Travel</li>
+                </ul>
               </div>
             </div>
           </div>
-          <!-- Card 3: Risk Management -->
+          <!-- Card 3: Marine Consulting -->
           <div class="card">
             <div class="card-inner">
               <div class="card-face card-front">
-                <div class="card-image" style="background-image: url('risk.jpg');"></div>
-                <div class="card-caption">Risk Management</div>
+                <div class="card-image" style="background-image: url('marine-consulting.jpg');"></div>
+                <div class="card-caption">Marine Consulting</div>
               </div>
               <div class="card-face card-back">
-                <p>We proactively identify and mitigate risks, ensuring secure maritime operations and peace of mind.</p>
+                <ul>
+                  <li>Shipboard Audits &amp; On-Board Training</li>
+                  <li>Technical Inspections &amp; Assessment</li>
+                  <li>Office Compliance Audits</li>
+                </ul>
               </div>
             </div>
           </div>
@@ -406,13 +425,13 @@
       </div>
     </section>
     
-    <!-- Contact Section -->
+    <!-- Contact Section with Updated Address -->
     <section id="contact" class="bg-section">
       <div class="bg-image" style="background-image: url('contact-bg.jpg');"></div>
       <div class="section-content">
         <h2>Contact Us</h2>
         <div class="contact-info">
-          <p>Address: [To be defined]</p>
+          <p>Address: FLAT/RM A 12/F ZJ 300 300, LOCKHART RD WAN CHAI, HONG KONG</p>
           <p>Email: <a href="mailto:info@blueking-shipmanagement.com" style="color: var(--primary-color);">info@blueking-shipmanagement.com</a></p>
         </div>
         <form class="contact-form" action="#" method="post">
@@ -430,6 +449,9 @@
       </div>
     </section>
   </main>
+  
+  <!-- Video Control Button -->
+  <button id="video-control" class="video-control">Pause Video</button>
   
   <!-- Footer -->
   <footer>
